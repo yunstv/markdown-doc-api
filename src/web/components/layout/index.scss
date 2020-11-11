@@ -1,0 +1,38 @@
+$colorBg: #2B3A42;
+$colorfff: #ffffff;
+
+.ant-layout-header{
+  width:100%;
+  background: $colorBg;
+  color: $colorfff;
+  height: 56px;
+  line-height: 56px;
+  font-size: 14px;
+  justify-content: center;
+  position: fixed;
+  .ant-layout-div{
+    width: 1200px;
+    margin: auto;
+    padding: 0px 20px;
+  }
+}
+
+.ant-layout-has-sider{
+  width: 1024px;
+  margin: auto;
+  display: flex;
+  background: $colorfff;
+  margin-top: 56px;
+  .ant-layout-sider-dark{
+    flex: 0 0 265px; /* 左侧固定200px */
+    background: $colorfff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+  }
+  .ant-layout-content{
+    flex: 3; /* 随父级变化 */
+    background: $colorfff;
+    margin-left: 300px;
+  }
+}

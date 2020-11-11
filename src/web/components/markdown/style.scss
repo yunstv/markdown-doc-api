@@ -1,0 +1,57 @@
+.toc-wrapper{
+  ul{
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0 10px 0;
+  }
+  li{
+    padding-right: 5px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    &:hover{
+      color: #1890ff;
+    }
+  }
+}
+.docs-toc-wrapper{
+  width: 265px;
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+  &::-webkit-scrollbar {
+    width: 2PX;
+  }
+  &::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5PX;
+    background: rgba(70, 82, 164, 0.17);
+    height: 10PX;
+  }
+  &::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    border-radius: 10PX;
+    background: rgba(70, 82, 164, 0.1);
+  }
+  &>li{
+    &>p{
+      flex: 1 1 auto;
+      display: block;
+      font-size: 16px;
+      margin: 0;
+      cursor: pointer;
+      &:hover{color: #1890ff;}
+    }
+  }
+  li,p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .toc-wrapper{
+    position: relative;
+    top: 0;
+    right: auto;
+    box-shadow: 0 0 0 0 transparent;
+    background: transparent;
+    height: auto;
+  }
+}
