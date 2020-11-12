@@ -1,6 +1,6 @@
 ## 基于MackDown编写的文档，web文档
 
-[点击此次在线预览](https://yunstv.github.io/markdown-doc-api/)
+[点击此处在线预览](https://yunstv.github.io/markdown-doc-api/)
 
 ![Alt Image Text](public/demo.png)
 ![Alt Image Text](public/demo2.png)
