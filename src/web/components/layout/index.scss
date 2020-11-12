@@ -11,7 +11,7 @@ $colorfff: #ffffff;
   justify-content: center;
   position: fixed;
   .ant-layout-div{
-    width: 1200px;
+    width: 1024px;
     margin: auto;
     padding: 0px 20px;
   }
@@ -26,7 +26,7 @@ $colorfff: #ffffff;
   .ant-layout-sider-dark{
     flex: 0 0 265px; /* 左侧固定200px */
     background: $colorfff;
-    padding: 20px;
+    padding: 0;
     position: fixed;
     height: 100%;
   }
@@ -34,5 +34,11 @@ $colorfff: #ffffff;
     flex: 3; /* 随父级变化 */
     background: $colorfff;
     margin-left: 300px;
+    min-height: calc(100vh - 56px);
+    &>p{
+      text-align: center;
+      margin-top: 50px;
+      color: #999999;
+    }
   }
 }

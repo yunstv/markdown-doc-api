@@ -2,6 +2,8 @@ import React from 'react'
 import DocsData from '@docs/__data.json'
 import Toc from './toc'
 import './style'
+import { withRouter, useParams } from 'react-router-dom'
+
 
 /**
  * 解析目录
@@ -50,7 +52,7 @@ class PreViewComponent extends React.PureComponent {
   }
 
   fetchData(path) {
-    fetch(`/docs/${path}`)
+    fetch(`/docs/${path}.json`)
     .then((response) => response.json())
     .then((res) => {
       this.setState({
@@ -60,7 +62,7 @@ class PreViewComponent extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.fetchData(DocsData[0].path)
+    // this.fetchData(DocsData[0].path)
     window.handleTocClick = (activeValue) => this.handleTocClick(activeValue)
   }
 

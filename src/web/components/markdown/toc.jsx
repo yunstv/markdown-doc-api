@@ -9,26 +9,26 @@ const Toc = (props) => {
     location,
     match
   } = props
-  
+  const hashId = location.hash.replace(/^#/, '')
   React.useLayoutEffect(() => {
-    scrollTo(location.hash, true, 1500)
+    scrollTo(hashId, true, 1500)
     return () => {
-       clearTimeout(time)
+      clearTimeout(time)
     }
   }, [])
   const scrollTo = (id, notPush = false, s = 0) => {
     clearTimeout(time)
     time = setTimeout(() => {
-      const dom = document.querySelector(id)
+      const dom = document.getElementById(id)
       window.scrollTo({ 
-        top: dom.offsetTop - 80, 
+        top: dom ? dom.offsetTop - 80 : 0, 
         behavior: "smooth" 
       });
     }, s)
-    notPush || history.push(`${match.url}#${id.replace(/^#/, '')}`)
+    notPush || history.push(`${match.url}#${id}`)
   }
   const handleClick = (item) => {
-    scrollTo('#' + item.id, false, 0)
+    scrollTo(item.id, false, 0)
     // props.handleTocClick(item)
   }
   return (
@@ -37,7 +37,7 @@ const Toc = (props) => {
         tocData.map((item, index) => (
           <li
             key={index + ''}
-            className="sidebar-item__anchor"
+            className={`sidebar-item__anchor ${hashId === item.id ? 'active' : ''}`}
             onClick={() => handleClick(item)}
             dangerouslySetInnerHTML={{ __html: item.value }}
           />

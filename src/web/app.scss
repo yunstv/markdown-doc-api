@@ -108,6 +108,7 @@
   overflow: hidden;
   list-style: none;
   line-height: 19px;
+  padding-top:10px;
 }
 .sidebar-item__anchors:before {
   content: '';
@@ -152,6 +153,12 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+.sidebar-item--open{
+  .sidebar-item__title,
+  .active{
+    color: #076ac5;
+  }
 }
 .sidebar-item--open .sidebar-item__toggle {
   -webkit-transform-origin: center center;

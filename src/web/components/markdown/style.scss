@@ -14,9 +14,10 @@
   }
 }
 .docs-toc-wrapper{
-  width: 265px;
+  width: 295px;
   overflow-y: auto;
   height: calc(100vh - 120px);
+  padding-left: 20px;
   &::-webkit-scrollbar {
     width: 2PX;
   }

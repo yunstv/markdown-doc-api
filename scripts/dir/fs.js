@@ -2,12 +2,27 @@ const fs = require('fs');
 const fse = require('fs-extra');
 const chalk = require('chalk')
 const Markdown = require('marked')
+const md5 = require('md5')
 const matchAll = require('string.prototype.matchall');
 
 const DATA_JSON = {
   docsList: []
 }
 
+
+/**
+ * 查找h标签id，加密
+ * 解决中文id在浏览器无法定位问题
+ * 获取字符集指定字符
+ * `<h3 id="{md5(id)}" ></h3>`
+ * @param {string} str 
+ */
+const MD5MarkdownID = (str) => {
+  const reg = new RegExp(/\<h.{2}id=("\S*")?\s*>\s*?[\S|\s]*?\s*<\/h\w>/g)
+  return str.replace(reg, (...arg) => {
+    return arg[0].replace(arg[1], `"${md5(arg[1] + Date.now())}"`)
+  })
+}
 /**
  * 解析目录
  * 获取字符集指定字符
@@ -105,10 +120,12 @@ async function directory(path, isLog = true) {
 
             const html = await readFileSync(filePath)
             if (!html) return false;
-            const __html = Markdown(html)
+            const __html = MD5MarkdownID(Markdown(html))
+            const key = md5(pathMD)
 
             DATA_JSON.docsList.push({
-              path: pathMD,
+              path: key,
+              pathName: pathMD,
               fileName: file.replace(/\.md$/g, ''),
               toc: doctocRegExp(__html)
             })
@@ -125,7 +142,7 @@ async function directory(path, isLog = true) {
             if (!isfile2) {
               await mkdir(publicDocsPath)
             } */
-            await writeFile(`${publicDocsPath}/${pathMD}`, JSON.stringify({  __html }), false)
+            await writeFile(`${publicDocsPath}/${key}.json`, JSON.stringify({  __html, key, fileName: pathMD }), false)
           }
         }
       });
