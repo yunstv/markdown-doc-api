@@ -1,4 +1,4 @@
-## 基于MackDown编写的文档，web文档
+## 基于Markdown编写的文档，web文档
 
 [点击此处在线预览](https://yunstv.github.io/markdown-doc-api/)
 
