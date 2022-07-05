@@ -1,0 +1,1 @@
+[{"fileName":"foreign-doc","route":"/api","label":"ETC接口文档","path":""},{"fileName":"inner-doc","route":"/inner","label":"ETC接口文档(内部版)","path":""},{"fileName":"open-doc","route":"/open","label":"开放平台接口文档","path":""}]
