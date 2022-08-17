@@ -3,7 +3,6 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import fs from 'fs'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-// import marked from 'marked'
 
 // 应用文件根路径
 const appDirectory = fs.realpathSync(process.cwd())
@@ -22,6 +21,7 @@ module.exports = (ENV) => {
     output: {
       pathinfo: false,
       path: resolveApp('build'),
+      publicPath: process.env.PUBLIC_URL,
       // 按需加载
       chunkFilename: () => {
         return isProd ? 'js/[id].[chunkhash:7].async.js' : '[id].js'
@@ -122,6 +122,9 @@ module.exports = (ENV) => {
       },
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.PUBLIC_URL': encodeURIComponent(process.env.PUBLIC_URL)
+      }),
       new webpack.ProgressPlugin(),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',

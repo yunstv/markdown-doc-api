@@ -5,76 +5,55 @@ import LayoutComponent from 'comp/layout'
 
 const baseName = '/'
 
-// const AppSwitch = (props) => {
-//   const AppRoute = (item) => (
-//     <Route key={item.path} path={item.path}>
-//       {
-//         () => {
-//             let PageComponent = item.component
-//           return (
-//             <>
-//               <Helmet>
-//                 <meta charSet='utf-8' />
-//                 <title>{`doc`}</title>
-//                 <link rel='canonical' href='' />
-//               </Helmet>
-//               <PageComponent>
-//                 {
-//                   Array.isArray(item.routes) ? <AppSwitch routes={item.routes} /> : null
-//                 }
-//               </PageComponent>
-//             </>
-//           )
-//         }
-//       }
-//     </Route>
-//   )
-//   return (
-//     <Switch>
-//       {
-//         Array.isArray(props.routes)
-//           ? props.routes.map((item) => AppRoute(item))
-//           : null
-//       }
-//     </Switch>
-//   )
-// }
-
-const HomePage = () => {
-  let location = useLocation()
-  let background = location.state && location.state.background;
-
-  return (
-      <Switch location={background || location}>
-          <Route
-            path="/api/:path"
-          >
-            {
-              () => (
-                <LayoutComponent>
-                  <Switch>
-                    <Route path="/api/help" exact>
-                      <p>请从左侧目录选取所需查看的文档</p>
-                    </Route>
-                    <Route>
-                      <Preview />
-                    </Route>
-                   </Switch>
-                </LayoutComponent>
-              )
-            }
-          </Route>
-      </Switch>
-  )
-}
-
 const Router = () => {
+  const text = '请从左侧目录选取所需文档查看'
   return (
     <HashRouter baseName={baseName}>
       <Switch>
-        <Route path={'/api'}>
+        {/* <Route path={'/api'}>
           <HomePage />
+        </Route> */}
+        <Route path="/api/:path">
+          <LayoutComponent>
+            <Switch>
+              <Route path="/api/help" exact>
+                <p>{text}</p>
+              </Route>
+              <Route>
+                <Preview />
+              </Route>
+            </Switch>
+          </LayoutComponent>
         </Route>
+        <Route path="/open/:path">
+          <LayoutComponent>
+            <Switch>
+              <Route path="/open/help" exact>
+                <p>{text}</p>
+              </Route>
+              <Route>
+                <Preview />
+              </Route>
+            </Switch>
+          </LayoutComponent>
+        </Route>
+
+        <Route path="/inner/:path">
+          <LayoutComponent>
+            <Switch>
+              <Route path="/inner/help" exact>
+                <p>{text}</p>
+              </Route>
+              <Route>
+                <Preview />
+              </Route>
+            </Switch>
+          </LayoutComponent>
+        </Route>
+
+        <Redirect from="/open" to="/open/help" exact/>
+        <Redirect from="/inner" to="/inner/help" exact/>
+        <Redirect from="/api" to="/api/help" exact/>
         <Redirect from="/" to="/api/help" exact/>
       </Switch>
     </HashRouter>

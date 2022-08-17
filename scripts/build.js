@@ -2,7 +2,7 @@
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
 process.env.GENERATE_SOURCEMAP = false;
-
+const webpack = require('webpack');
 const configFactory = require('./webpack.config');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 

@@ -74,7 +74,7 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  margin-top: 5px;
+  margin-top: 4px;
   margin-right: 5px;
   cursor: pointer;
   color: #1D78C1;
@@ -90,7 +90,7 @@
           flex: 1 1 auto;
   font-weight: 600;
   color: #666666;
-  max-width: 85%;
+  max-width: 95%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -113,9 +113,9 @@
 .sidebar-item__anchors:before {
   content: '';
   position: absolute;
-  height: calc(100% - 0.6em);
+  height: calc(100%);
   top: 0;
-  left: 1.5em;
+  left: 22px;
   border-left: 1px dashed #999999;
 }
 .sidebar-item__anchor {
@@ -149,25 +149,26 @@
 .sidebar-item__anchor a:hover {
   color: #1D78C1;
 }
-.sidebar-item--open .sidebar-item__anchors {
+.sidebar-item--open>.sidebar-item__anchors {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.sidebar-item--open{
+.sidebar-item--open>{
+  .docs-toc-wrapper>.sidebar-item__title,
   .sidebar-item__title,
   .active{
     color: #076ac5;
   }
 }
-.sidebar-item--open .sidebar-item__toggle {
+.sidebar-item--open>.sidebar-item__toggle {
   -webkit-transform-origin: center center;
           transform-origin: center center;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
           width: 6px;
           margin-right: 15px;
-          margin-top: -5px;
+          margin-top: -9px;
 }
 .sidebar-item--disabled .sidebar-item__toggle {
   color: #AAA;
@@ -258,4 +259,36 @@ html{
   -webkit-box-ordinal-group: 2;
   -ms-flex-order: 1;
   order: 1
+}
+.sidebar-item__anchors{
+  &>.docs-toc-wrapper{
+    padding-left: 5px;
+    &>.docs-toc-wrapper{
+      margin: 0.6em 0;
+    }
+  }
+}
+.docs-toc-wrapper .p{
+  font-weight: normal;
+}
+.page-up{
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius:6px;
+  font-size: 18px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #cccccc;
+  opacity: .6;
+  transition: all .5 ease;
+  &:hover{
+    border-color: #076ac5;;
+    color: #076ac5;
+    opacity: 1;
+  }
 }

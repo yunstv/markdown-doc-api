@@ -12,6 +12,7 @@
 /build
 /dist
 /public/docs
+/public/docs*
 /scripts/__lib
 __*.*
 

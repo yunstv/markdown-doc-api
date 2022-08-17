@@ -1,0 +1,58 @@
+## 首页-Banner
+
+#### 域名列表
+
+| 序号  | 环境  | 请求地址 |
+| :---: | :---: | :------- |
+|   1   | 开发  |          |
+|   2   | 测试  |          |
+|   3   | 生产  |          |
+
+#### 接口说明
+
+首页顶部Banner中的图片列表，数量由后端指定。
+
+#### 请求说明
+
+* 请求类型 : GET
+* 请求地址 : /base/api/system/banner/list
+
+#### 请求头
+
+| 参数             | 是否必填 | 类型   | 最大长度 | 参数描述                                    | 示例值     |
+| :--------------- | :------: | :----- | :------- | :------------------------------------------ | :--------- |
+| app-type         |    是    | String |          | 应用类型(TYPE_01:库拍APP, TYPE_02:采集工具) | TYPE_01    |
+| system-type      |    是    | String |          | 系统类型(IOS:苹果应用, ANDROID:安卓应用)    | IOS        |
+| operating-system |    否    | String |          | 操作系统版本                                | iOS 14.7.1 |
+| mobile-model     |    否    | String |          | 手机型号                                    | iPhone12   |
+| call-mode        |    是    | String |          | 调用模式(NATIVE:原生调用，H5:H5调用)        | NATIVE     |
+| device-id        |    否    | String |          | 设备唯一标识                                |            |
+| token            |    否    | String |          | 登录后的令牌                                |            |
+
+
+#### 请求样例
+
+```
+GET /base/api/system/banner/list
+```
+
+#### 应答报文
+
+| 参数      | 是否必填 | 类型   | 最大长度 | 参数描述                        | 示例值 |
+| :-------- | :------: | :----- | :------- | :------------------------------ | :----- |
+| requestId |    是    | String |          | 请求的唯一标识                  |        |
+| code      |    是    | String |          | 响应码，"000"为成功，其他为失败 |        |
+| msg       |    是    | String |          | 响应信息                        |        |
+| data      |    是    | list   |          | 图片url                         |        |
+
+#### 应答样例
+
+```
+{
+  "requestId": "cc67513b-9b00-4283-a966-80153fd3ecfb",
+  "code": "000",
+  "msg": "成功",
+  "data": ["http://www.img.com/123.jpg","http://www.img.com/456.jpg"]
+}
+
+```

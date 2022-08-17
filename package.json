@@ -1,31 +1,15 @@
 {
-  "name": "markdown-edit-docs",
-  "version": "1.0.0",
-  "title": "JavaScript markdown edit docs",
-  "description": "基于react框架搭建的，使用markdown文件编辑的文档系统，上手简单，使用方便",
-  "homepage": "https://yunstv.github.io/markdown-doc-api/",
-  "keywords": [
-    "javascript",
-    "markdown",
-    "react",
-    "docs"
-  ],
-  "author": {
-    "name": "zhouyang",
-    "url": "https://yunstv.github.io"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yunstv/markdown-doc-api.git"
-  },
-  "license": "ISC",
+  "homepage": "/markdown-doc-api",
   "scripts": {
-    "deploy": "yarn build && gh-pages -d build",
     "toc": "doctoc --github ./src/docs/*.md",
-    "babel-script": "rm -rf ./scripts/__lib && babel ./scripts --out-dir ./scripts/__lib --copy-files --no-copy-ignored",
+    "babel-script": "rm -rf ./scripts/__lib ./public/docs && babel ./scripts --out-dir ./scripts/__lib --copy-files --no-copy-ignored",
     "start": "yarn dir-start && webpack serve --config ./scripts/__lib/start.js",
     "build": "yarn dir-start && webpack --mode=production --config ./scripts/__lib/build.js && node ./scripts/__lib/dir/copyfile.js",
-    "dir-start": "yarn babel-script && node ./scripts/__lib/dir/fs.js"
+    "dir-start": "yarn babel-script && node ./scripts/__lib/dir/fs.js",
+    "build:ghpages": "env-cmd -f .env.ghpages npm run build",
+    "predeploy": "npm run build:ghpages",
+    "deploy": "gh-pages -b gh-pages -d build",
+    "serve": "serve -s build -l 4000"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
@@ -39,16 +23,17 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.0",
     "doctoc": "^1.4.0",
+    "env-cmd": "^10.1.0",
     "fibers": "^5.0.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^9.0.1",
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^4.0.0",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
     "markdown-loader": "^6.0.0",
     "marked": "^1.2.3",
     "md5": "^2.3.0",
-    "mini-css-extract-plugin": "^1.2.1",
+    "mini-css-extract-plugin": "^1.3.3",
     "sass": "^1.28.0",
     "sass-loader": "^10.0.5",
     "string.prototype.matchall": "^4.0.2",

@@ -11,14 +11,24 @@ $colorfff: #ffffff;
   justify-content: center;
   position: fixed;
   .ant-layout-div{
-    width: 1024px;
     margin: auto;
     padding: 0px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    a{
+      color: #999999;
+      margin-right: 15px;
+      text-decoration: none;
+      &.active, &:hover{
+        color: #ffffff;
+      }
+    }
   }
 }
 
 .ant-layout-has-sider{
-  width: 1024px;
+  width: 100%;
   margin: auto;
   display: flex;
   background: $colorfff;
@@ -33,12 +43,30 @@ $colorfff: #ffffff;
   .ant-layout-content{
     flex: 3; /* 随父级变化 */
     background: $colorfff;
-    margin-left: 300px;
+    margin-left: 296px;
     min-height: calc(100vh - 56px);
     &>p{
       text-align: center;
       margin-top: 50px;
       color: #999999;
+    }
+  }
+}
+.file-info{
+  padding: 20px 0;
+  color: #cecece;
+  font-size: 12px;
+  border-top: 1px solid #cecece;
+  margin: 0 20px;
+  text-align: right;
+}
+.sidebar-item {
+  .docs-toc-wrapper{
+    display: none;
+  }
+  &.sidebar-item--open{
+    .docs-toc-wrapper{
+      display: block;
     }
   }
 }

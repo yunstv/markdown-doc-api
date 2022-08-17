@@ -1,4 +1,6 @@
 import React from 'react'
+import { useRouteMatch, NavLink } from 'react-router-dom'
+import { docFetchDataFunc } from 'root/utils/util'
 import './index.scss'
 import Menu from './menu'
 
@@ -20,20 +22,74 @@ const Hours = () => {
   return day
 }
 
-const LayoutComponent = (props) => {
+const Header = (() => {
+  const match = useRouteMatch()
+  const [title, setTitle] = React.useState('')
+  const [list, setList] = React.useState([])
+  const setTitleFunc = () => {
+      let title = ''
+      if (match.path.includes('/inner')) {
+        title = 'ETC接口文档(内部版)'
+      } else if (match.path.includes('/open')) {
+        title = '开放平台接口文档'
+      } else {
+        title = 'ETC接口文档'
+      }
+      setTitle(title)
+  }
+  const fetchData = React.useCallback(() => {
+    docFetchDataFunc(
+      {
+        docsFetchKeyDefault: 'docs-data.txt'
+      },
+      (value) => {
+        setList(value)
+      }
+    )
+  }, [match.path])
+
+  React.useEffect(() => {
+    fetchData()
+  }, [])
+  // React.useEffect(() => {
+  //   setTitleFunc()
+  // }, [match])
+
+  return (
+    <header className="ant-layout-header">
+      <div className="ant-layout-div">
+        {
+          list.map((item, index) => (
+            <NavLink
+              key={'' + index}
+              to={item.route}
+              activeStyle={{
+                color: "#fff"
+              }}
+            >
+              {item.label}
+            </NavLink>
+          ))
+        }
+      </div>
+    </header>
+  )
+})
+
+const LayoutComponent = (props) => {  
   return (
     <section className="ant-layout">
-      <header className="ant-layout-header">
-        <div className="ant-layout-div">
-          接口文档
-          <div style={{float: 'right'}}>hi,{Hours()}</div>
-        </div>
-      </header>
+      <Header />
       <section className="ant-layout ant-layout-has-sider">
         <aside className="ant-layout-sider ant-layout-sider-dark"
         >
-          <div className="ant-layout-sider-children">
-            <Menu />
+          <div className="ant-layout-sider-children"
+            style={{
+              overflowY: 'auto',
+              paddingBottom: '50px'
+            }}
+          >
+            <Menu inner={props.inner}/>
           </div>
         </aside>
         <main className="ant-layout-content">
