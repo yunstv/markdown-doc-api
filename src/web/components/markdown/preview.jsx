@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { docFetchDataFunc } from 'root/utils/util'
+// import Toc from './toc'
 import './style'
 
 const Hours = (_now) => {
@@ -61,6 +62,9 @@ const PreView = (props) => {
   if (!__html) {
     return null
   }
+  React.useEffect(() => {
+    window.hljs.highlightAll();
+  }, [__html])
   return (
     <div className="markdown-wrapper"
       style={
